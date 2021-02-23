@@ -1,0 +1,109 @@
+<section class="search-form-section">
+    <form id="searchForm" [formGroup]="searchWeatherForm"
+        (ngSubmit)="onWeatherSearchFormSubmit(searchWeatherForm.valid,searchWeatherForm.value)">
+        <input type="text" class="search-form-input" placeholder="City, Zip code, Country" formControlName="cityName">
+        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+    </form>
+</section>
+
+<section class="current-forecast">
+    <div class="current-details-primary" *ngIf="isCurrentWeatherDataAvailable">
+        <div class="location">
+            <span class="title">Location : </span>
+            <span class="value">{{ currentWeatherData.name}}</span>
+        </div>
+        <div class="curr-weather-desc">
+            <span class="title">Current Weather Description : </span>
+            <span class="value">{{currentWeatherData.weather[0].description}}</span>
+        </div>
+        <div class="current-temp">
+            <span class="title">Current Temp. : </span>
+            <span class="value">{{currentWeatherData.main.temp}} &deg;C</span>
+        </div>
+        <div class="day-high-temp">
+            <span class="title">Today's High temp. : </span>
+            <span class="value">{{currentWeatherData.main.temp_max}} &deg;C</span>
+        </div>
+        <div class="day-low-temp">
+            <span class="title">Today's Low Temp. : </span>
+            <span class="value">{{currentWeatherData.main.temp_min}} &deg;C</span>
+        </div>
+        <div class="show-more">
+            <button class="btn btn-info" (click)="onViewMoreButtonClicked()">View More</button>
+        </div>
+    </div>
+    <div class="current-details-secondary" *ngIf="isCurrentWeatherDataAvailable && showMoreButtonClicked">
+        <div class="wind-speed">
+            <span class="title">Wind Speed : </span>
+            <span class="value">{{ currentWeatherData.wind.speed}} mph</span>
+        </div>
+        <div class="humidity">
+            <span class="title">Humidity : </span>
+            <span class="value">{{currentWeatherData.main.humidity}} g.kg-1</span>
+        </div>
+        <div class="pressure">
+            <span class="title">Pressure : </span>
+            <span class="value">{{currentWeatherData.main.pressure}} N/m²</span>
+        </div>
+        <div class="sunrise-time">
+            <span class="title">Sunrise Time : </span>
+            <span class="value">{{currentWeatherData.sys.sunrise | date: 'hh:mm:ss'}} AM</span>
+        </div>
+        <div class="sunset-time">
+            <span class="title">Sunset Time : </span>
+            <span class="value">{{currentWeatherData.sys.sunset | date: 'hh:mm:ss'}} PM</span>
+        </div>
+    </div>
+</section>
+
+<section class="weekly-forecast-chart" *ngIf="isChartDataAvailable">
+    <h5>Weekly Forecast Chart</h5>
+    <div style="height: 100%;" class="forecast-chart">
+        <ngx-charts-line-chart [scheme]="colorScheme" [legend]="legend" [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="weeklyForecastData">
+            <ng-template #seriesTooltipTemplate let-model="model">
+                <pre style="color:#fff; padding-top: 10px;">{{getTooltipDetailsFromModel(model)}}</pre>
+            </ng-template>
+        </ngx-charts-line-chart>
+    </div>
+</section>
+
+<section class="weekly-forecast-table" *ngIf="isTableDataAvailable">
+    <h5>Weekly Forecast Data</h5>
+    <div>
+        <p-table #dt [value]="weeklyForecastTableData"
+            [globalFilterFields]="['day_of_month','day','high_temp','low_temp','weather_desc']">
+            <ng-template pTemplate="header">
+                <span class="p-input-icon-right">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                        placeholder="Global Search" />
+                </span>
+                <tr>
+                    <th pSortableColumn="day_of_month">Day Of Month <p-sortIcon field="day_of_month"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="day">Day <p-sortIcon field="day"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="high_temp">High Temperature (&deg;C) <p-sortIcon field="high_temp"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="low_temp">Low Temperature (&deg;C)<p-sortIcon field="low_temp"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="weather_desc">Weather Description <p-sortIcon field="weather_desc">
+                        </p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-record>
+                <tr>
+                    <td>{{record.day_of_month}}</td>
+                    <td>{{record.day}}</td>
+                    <td>{{record.high_temp}} (&deg;C)</td>
+                    <td>{{record.low_temp}} (&deg;C)</td>
+                    <td>{{record.weather_desc}}</td>
+                    <!-- <td>{{product.price | currency: 'USD'}}</td> -->
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>
