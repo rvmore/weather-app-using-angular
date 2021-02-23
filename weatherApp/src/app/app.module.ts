@@ -13,6 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WeatherComponent } from './weather/weather.component';
 
+// UI Library Import
+import { UiLibraryModule } from 'ui-library';
+
 // SERVICE IMPORTS
 import { CommonService } from './shared/services/common.service';
 import { DatePipe } from '@angular/common';

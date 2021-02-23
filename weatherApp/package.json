@@ -2,6 +2,7 @@
   "name": "weather-app",
   "version": "0.0.0",
   "scripts": {
+    "prestart": "ng build ui-library",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1000.8",
+    "@angular-devkit/build-ng-packagr": "~0.1000.8",
     "@angular/cli": "~10.0.8",
     "@angular/compiler-cli": "~10.0.14",
     "@types/node": "^12.11.1",
@@ -47,6 +49,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~3.3.0",
     "karma-jasmine-html-reporter": "^1.5.0",
+    "ng-packagr": "^10.0.0",
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
