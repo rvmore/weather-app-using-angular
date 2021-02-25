@@ -19,14 +19,10 @@ import { UiLibraryModule } from 'ui-library';
 // SERVICE IMPORTS
 import { CommonService } from './shared/services/common.service';
 import { DatePipe } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
-    WeatherComponent,
-    HeaderComponent,
-    FooterComponent,
+    WeatherComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +33,8 @@ import { FooterComponent } from './footer/footer.component';
     NgxChartsModule,
     BrowserAnimationsModule,
     TableModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    UiLibraryModule
   ],
   providers: [CommonService, DatePipe],
   bootstrap: [AppComponent]
