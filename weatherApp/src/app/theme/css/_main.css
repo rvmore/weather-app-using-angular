@@ -1,0 +1,14 @@
+.header {
+  background-color: #555555;
+  padding: 15px 15px;
+}
+
+.header-logo {
+  color: #fafafa;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.header-logo-img{
+    background: url('../../../assets/images/app_logo.png');
+}

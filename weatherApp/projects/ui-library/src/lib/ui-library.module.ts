@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { UiLibraryFooterComponent } from './components/ui-lib-footer/ui-lib-footer.component';
 import { UiLibraryHeaderComponent } from './components/ui-lib-header/ui-lib-header.component';
 import { UiLibraryComponent } from './ui-library.component';
@@ -9,7 +10,9 @@ import { UiLibraryComponent } from './ui-library.component';
     UiLibraryHeaderComponent,
     UiLibraryFooterComponent
   ],
-  imports: [],
+  imports: [
+    CommonModule
+  ],
   exports: [
     UiLibraryComponent,
     UiLibraryHeaderComponent,

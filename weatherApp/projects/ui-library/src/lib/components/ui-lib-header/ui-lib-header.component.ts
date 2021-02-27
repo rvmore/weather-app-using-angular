@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
     selector: 'ui-lib-header',
@@ -6,5 +6,6 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./ui-lib-header.component.scss']
 })
 export class UiLibraryHeaderComponent implements OnInit {
+    @Input() showHeader: boolean = true;
     ngOnInit(): void { }
 }

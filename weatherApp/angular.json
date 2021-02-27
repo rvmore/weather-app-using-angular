@@ -29,6 +29,7 @@
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/app/theme/css/_main.css",
               "./node_modules/primeicons/primeicons.css",
               "./node_modules/primeng/resources/themes/nova/theme.css",
               "./node_modules/primeng/resources/primeng.min.css",
